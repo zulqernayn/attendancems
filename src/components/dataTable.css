@@ -1,0 +1,60 @@
+table{
+    width: max-content;
+    height: min-content;
+    border-radius: 1rem;
+    background-color: lightgreen;
+    font-family: sans-serif;
+    box-shadow: 0px 25px 35px #0003;
+}
+
+table th{
+    text-transform: capitalize;
+}
+
+table td, table th{
+    padding: 0.5rem 1rem;
+}
+
+table td:not(:first-child,:last-child),
+table th:not(:first-child,:last-child){
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+
+table tr:nth-child(even){
+    background-color: rgb(231, 231, 231);
+}
+
+table td:not(:first-child){
+    text-align: center;
+}
+
+table th{
+    background-color: transparent;
+}
+
+th:first-child{
+    border-top-left-radius: 1rem;
+}
+th:last-child{
+    border-top-right-radius: 1rem;
+}
+
+table button{
+    box-shadow: 0px 0px 10px #0004;
+}
+table button:hover{
+    border-radius: 0.8rem;
+    border: 2px black solid;
+    transition: border-radius 130ms;
+    background-color: lightgreen;
+}
+
+table button.delete:hover{
+    color: #eee;
+    background-color: #ff3b4b;
+}
+
+table button:active{
+    border-color: white;
+}

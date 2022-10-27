@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap');
+
+.grid-custom{
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr))
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+    --text-dimmed:#777;
+    --text-primary: rgb(7, 23, 32);
+}
+
+html,
+body{
+    font-family:"Soleto Trial";
+}
+
+@layer components{
+    .card-container{
+        display: grid;
+        gap: 1rem;
+        grid-auto-flow: column;
+        grid-template-rows: 20rem;
+        justify-content: center;
+        padding: 1rem;
+        /* background-color: #bbb3; */
+    }
+    .card-container > *{
+        color: white;
+        width: 12rem;
+        display: grid;
+        grid-template-rows: auto 1fr 1fr;
+        align-items: flex-end;
+        padding: 1rem;
+        border-radius: 1rem;
+        text-align: left;
+        background-image: linear-gradient(0deg,#222,#333);
+    }
+    .card-container > div{
+        color: springgreen;
+    }
+    
+    .card-container > button{
+        transition:transform 100ms, background-color 150ms;
+        perspective:1900px;
+        z-index:2;
+        transform-style: preserve-3d;
+        position:relative;
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+    .card-container > button:hover{
+        z-index:1;
+        color: #bbb;
+        transform: rotateX(10deg) rotateY(20deg);
+    }
+    .card-container > * p{
+        color: var(--text-dimmed);
+        font-family: sans-serif;
+    }
+    .card-container > * h1{
+        font-size: 2rem;
+        transition: transform 100ms,filter 100ms;
+        font-family: 'bebas neue';
+        transform: translateZ(3rem);
+        filter: drop-shadow(0px 0px 15px #0000);
+    }
+
+    .card-container > button:active *{
+        transform: translateZ(0) !important;
+        filter: drop-shadow(0px 0px 10px #0000) !important;
+    }
+    
+    .card-container > button:hover > h1{
+        filter: drop-shadow(-17px 14px 10px black);
+    }
+
+    .card-container > button .icon{
+        transform: translateZ(3rem);
+        filter: drop-shadow(0px 0px 20px #0000);
+        transition: filter 100ms,transform 100ms;
+    }
+
+    .card-container > button:hover .icon{
+        filter: drop-shadow(-20px 20px 20px #000a);
+    }
+    
+    .card-container > * .icon{
+        width: 100%;
+        text-align: center;
+        font-size: 4rem;
+    }
+
+    .card-container > div{
+        grid-template-rows: auto 1fr auto;
+    }
+
+    .card-container > div .icon{
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* @layer components{
+    .button{
+        @apply h-fit w-fit rounded-xl px-2;
+    }
+
+    .card{
+        @apply h-2/4 max-w-[11.1rem] rounded-2xl flex flex-col text-left justify-between p-4;
+        transition:transform 100ms, background-color 150ms;
+        perspective:1900px;
+        z-index:2;
+        transform-style: preserve-3d;
+        position:relative;
+        transform: rotateX(0deg) rotateY(0deg);
+    }
+
+    .card:hover{
+        z-index:1;
+        transform: rotateX(10deg) rotateY(20deg);
+    }
+
+    .card:active > *{
+        transform:translateZ(0px);
+        text-shadow:0px 0px 0px #000a;
+    }
+
+    .card:hover > h2{
+      @apply drop-shadow-[-20px_15px_15px_#0008]
+    }
+
+    .card:focus{
+        border:2px black solid;
+    }
+
+    .card > h2{
+        transition:transform 100ms, filter 100ms;
+        transform:translateZ(50px);
+    }
+
+    .card-heading{
+        @apply drop-shadow-[0_15px_15px_#0008] text-slate-700 font-['bebas_neue'] font-bold text-4xl
+    }
+
+} */
