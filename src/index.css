@@ -77,6 +77,11 @@ body{
         filter: drop-shadow(-17px 14px 10px black);
     }
 
+    .card-container > button:disabled {
+        pointer-events: none;
+        background-image: linear-gradient(0deg,#444,#444);
+    }
+    
     .card-container > button .icon{
         transform: translateZ(3rem);
         filter: drop-shadow(0px 0px 20px #0000);

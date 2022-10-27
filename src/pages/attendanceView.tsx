@@ -1,38 +1,36 @@
 import { useEffect, useState } from "preact/hooks"
-import CalendarCard from "../components/calendarCard"
+import { route } from "preact-router";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 export default function AttendanceView({email}:{email:string}){
 
     const [attendanceRecord,setAttendanceRecord]:[attendanceRecord:Array<Object>,setAttendanceRecord:Function]=useState([])
+    const [date,setDate]=useState(new Date())
     
     async function fetchAttendance(){
-        const res=await fetch(`http://localhost:5000/getAttendance?email=${email}`)
+        const res=await fetch(`http://localhost:5000/userAttendance`,{credentials:"include"})
         const data=await res.json()
-        const {marked,leaves,...presentDays}=data
-        const attendance=[]
-        for(let year in presentDays){
-            for(let month in presentDays[year]){
-                attendance.push({
-                    month:new Date(2022,Number(month)).toLocaleDateString('default',{month:'long'}),
-                    attendance:presentDays[year][month]
-                })
-            }
-        }
-        console.log(attendance)
-        console.log(data)
-        setAttendanceRecord(attendance)
+        setAttendanceRecord(data.userDto.attendance)
     }
 
-    //@ts-ignore
-    useEffect(fetchAttendance,[])
+    useEffect(()=>{
+        fetchAttendance()
+    },[])
     
     return(
-        <div className="w-full h-full grid grid-custom gap-8 p-8 justify-items-center justify-around items-center">
-            {attendanceRecord.map((data,index)=>{
-                if(index>11)return
-                //@ts-ignore
-                return <CalendarCard {...data}/>
-            })}
+        <div className="w-full h-full grid grid-rows-[auto,1fr] grid-cols-1 justify-items-center justify-around items-center bg-zinc-800 text-white relative">
+            <header className="w-full px-10 pt-10 flex justify-start">
+                <button className="p-1 px-2 hover:border-violet-800 border-2 border-transparent hover:bg-transparent bg-violet-800 rounded-xl transition-all hover:px-3" onClick={()=>route("/dashboard")}>
+                    <i className="fas fa-arrow-left mr-2"></i>
+                    Back
+                </button>
+            </header>
+            <div className="grid grid-cols-2 w-full justify-items-center">
+                <h1>Attendance</h1>
+                {/*@ts-ignore*/}
+                <DatePicker readOnly inline highlightDates={attendanceRecord.map(date=>new Date(date))} selected={date} onChange={date => setDate(date)} />
+            </div>
         </div>
     )
 }

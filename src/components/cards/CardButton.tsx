@@ -1,8 +1,8 @@
 import { JSX } from "preact";
 
-const CardButton = ({clickHandler,desc,icon,title}:{clickHandler:JSX.MouseEventHandler<HTMLButtonElement>,desc:string,icon:string,title:string}) => {
+const CardButton = ({clickHandler,desc,icon,title,disabled=false}:{clickHandler:JSX.MouseEventHandler<HTMLButtonElement>,desc:string,icon:string,title:string,disabled?:boolean}) => {
     return (
-        <button onClick={clickHandler}>
+        <button onClick={clickHandler} disabled={disabled}>
             <p>{desc}</p>
             <div className="icon">
                 <i className={`${icon}`}></i>

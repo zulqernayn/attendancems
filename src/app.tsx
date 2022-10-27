@@ -10,7 +10,8 @@ import DashBoardView from "./pages/dashboardView";
 export function App() {
 
   return (
-    <>
+    <div className="bg-zinc-800 w-screen h-screen">
+    {/* @ts-ignore */}
       <Router>
         <LoginView
         //@ts-ignore
@@ -23,13 +24,13 @@ export function App() {
           path="/dashboard"/>
         <AttendanceView
         //@ts-ignore
-        path="/user/:email/viewAttendance"
+        path="/viewAttendance"
         />
         <AdminView 
         //@ts-ignore
         path="/admin"/>
       </Router>
       <Toaster/>
-    </>
+    </div>
   )
 }
