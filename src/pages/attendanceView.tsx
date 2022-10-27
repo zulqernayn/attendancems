@@ -2,6 +2,7 @@ import { useEffect, useState } from "preact/hooks"
 import { route } from "preact-router";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import CalendarCard from "../components/calendarCard/calendarCard";
 
 export default function AttendanceView({email}:{email:string}){
 
@@ -28,8 +29,7 @@ export default function AttendanceView({email}:{email:string}){
             </header>
             <div className="grid grid-cols-2 w-full justify-items-center">
                 <h1>Attendance</h1>
-                {/*@ts-ignore*/}
-                <DatePicker readOnly inline highlightDates={attendanceRecord.map(date=>new Date(date))} selected={date} onChange={date => setDate(date)} />
+                <CalendarCard/>
             </div>
         </div>
     )
