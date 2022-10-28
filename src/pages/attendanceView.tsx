@@ -29,7 +29,17 @@ export default function AttendanceView({email}:{email:string}){
             </header>
             <div className="grid grid-cols-2 w-full justify-items-center">
                 <h1>Attendance</h1>
-                <CalendarCard/>
+                <CalendarCard dates={[
+                    "2022-10-30T19:00:00.000Z",
+                    "2022-10-30T19:00:00.000Z",
+                    "2022-09-30T19:00:00.000Z",
+                    "2022-09-30T19:00:00.000Z",
+                    "2022-01-31T19:00:00.000Z",
+                    "2022-01-31T19:00:00.000Z",
+                    "2022-04-30T19:00:00.000Z",
+                    "2022-06-30T19:00:00.000Z",
+                    "2022-06-30T19:00:00.000Z"
+                    ]}/>
             </div>
         </div>
     )

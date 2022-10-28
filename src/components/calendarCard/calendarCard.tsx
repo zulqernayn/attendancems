@@ -1,5 +1,7 @@
-export default function CalendarCard(){
+export default function CalendarCard({dates=[]}:{dates:Array<string>}){
 
+    const MONTHS=new Set(dates.map(date=>new Date(date.split("T")[0]).getMonth()+1))
+    
     const today=new Date()
     
     const WEEK_DAYS=[
@@ -11,6 +13,7 @@ export default function CalendarCard(){
         "Fr",
         "Sa",
     ]
+    
     const MONTH_DATES=new Array(30).fill(null).map((_,i)=>i+1)
     const BLANKS=new Array(new Date(today.getFullYear(),today.getMonth(),1).getDay()).fill(null)
     
@@ -22,10 +25,9 @@ export default function CalendarCard(){
                 {WEEK_DAYS.map(day=><p>{day}</p>)}
                 </div>
                <div className="grid grid-cols-7 gap-2 justify-items-center">
-                {[...BLANKS,...MONTH_DATES].map(date=><p>{date}</p>)}
-                </div>
-               <div className="">
-                {BLANKS}
+                {[...BLANKS,...MONTH_DATES].map(date=>{
+                    const filteredDate=dates.filter(el=>new Date(el).getDay()===date)
+                })}
                 </div>
            </div>
         </div>
