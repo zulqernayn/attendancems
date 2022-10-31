@@ -1,4 +1,4 @@
-export const MONTHS = [
+const MONTHS = [
   "January",
   "February",
   "March",
@@ -16,6 +16,10 @@ export const MONTHS = [
 export const WEEK_DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
 const MONTH_DATES = new Array(30).fill(null).map((_, i) => i + 1);
+
+export function returnMonthNameFromNumber(month:number){
+  return MONTHS[month]
+}
 
 export function returnMonthFillDates(date: Date):Array<null|number> {
   const BLANKS = new Array(new Date(date.getFullYear(), date.getMonth(), 1).getDay()).fill(null);
