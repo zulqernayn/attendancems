@@ -1,15 +1,16 @@
-import { returnMonthFillDates, WEEK_DAYS } from "../../utils/utils"
+import { isOff, returnMonthFillDates, WEEK_DAYS } from "../../utils/utils"
+import DisabledDate from "./components/DisabledDate"
+import MarkedDate from "./components/markedDate"
 
 export default function CalendarCard({dates=[],date=new Date()}:{dates:Array<number|null>,date:Date}){
 
     const today=new Date()
-
     
     function calendarDatesMapping(fillDate:number|null,i:number){
         if(dates.includes(fillDate))
-            return <p className="bg-violet-400 bg-opacity-10 rounded px-1 py-0.5 w-full text-center text-violet-400">{fillDate}</p>
-        else if(!((i+1)%7) || !((i)%7))
-            return <p className="text-zinc-500 rounded px-1 py-0.5 w-full text-center">{fillDate}</p>
+            return <MarkedDate>{fillDate}</MarkedDate>
+        else if(isOff(i))
+            return <DisabledDate>{fillDate}</DisabledDate>
         else
             return <p className="rounded px-1 py-0.5 w-full text-center">{fillDate}</p>
     }

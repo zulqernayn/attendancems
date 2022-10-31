@@ -25,3 +25,9 @@ export function returnMonthFillDates(date: Date):Array<null|number> {
   const BLANKS = new Array(new Date(date.getFullYear(), date.getMonth(), 1).getDay()).fill(null);
   return [...BLANKS,...MONTH_DATES]
 }
+
+export function isOff(date:number,otherOffDates:Array<number>=[]){
+  if(!((date+1)%7) || !((date)%7))
+    return true
+  return otherOffDates.includes(date)
+}
