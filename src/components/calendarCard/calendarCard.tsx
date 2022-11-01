@@ -1,5 +1,5 @@
 import { isOff, returnMonthFillDates, WEEK_DAYS } from "../../utils/utils"
-import DisabledDate from "./components/DisabledDate"
+import DisabledDate from "./components/disabledDate"
 import MarkedDate from "./components/markedDate"
 
 export default function CalendarCard({dates=[],date=new Date()}:{dates:Array<number|null>,date:Date}){

@@ -5,13 +5,38 @@ import CalendarCard from "../components/calendarCard/calendarCard";
 
 export default function AttendanceView({email}:{email:string}){
 
-    const [attendanceRecord,setAttendanceRecord]:[attendanceRecord:Array<Object>,setAttendanceRecord:Function]=useState([])
+    const [attendanceRecord,setAttendanceRecord]:[attendanceRecord:Array<any>,setAttendanceRecord:Function]=useState([])
     const [date,setDate]=useState(new Date())
     
     async function fetchAttendance(){
         const res=await fetch(`http://localhost:5000/userAttendance`,{credentials:"include"})
         const data=await res.json()
-        setAttendanceRecord(data.userDto.attendance)
+        // const {attendance}=data.userDto
+        const attendance=[
+            new Date(2022,11).toISOString(),
+            new Date(2022,10).toISOString(),
+            new Date(2022,10).toISOString(),
+            new Date(2022,10).toISOString(),
+            new Date(2022,7).toISOString(),
+            new Date(2022,6).toISOString(),
+            new Date(2022,5).toISOString(),
+            new Date(2022,4).toISOString(),
+        ]
+        setAttendanceRecord(returnAttendanceObjs(attendance))
+    }
+
+    function returnAttendanceObjs(attendance:Array<string>){
+        let months=new Array(12).fill([])
+        attendance.forEach(date=>{
+            let iMonth=new Date(date).getMonth()
+            months[iMonth]=[...months[iMonth],new Date(date).getDate()]
+        })
+        months=months.map(i=>i.length>0?i:null)
+        let attendanceArr=months.map((dates:Array<number>|null,i:number)=>{
+            if(!dates||dates.length===0) return
+            return {month:i,dates}
+        }).filter(i=>i)
+        return attendanceArr
     }
 
     useEffect(()=>{
@@ -28,7 +53,7 @@ export default function AttendanceView({email}:{email:string}){
             </header>
             <div className="grid grid-cols-2 w-full justify-items-center">
                 <h1>Attendance</h1>
-                <CalendarCard dates={[3,4,5,6,7,10]} date={new Date(new Date().getFullYear(),7)}/>
+                {attendanceRecord.map(attObj=><CalendarCard dates={attObj.dates} date={new Date()}/>)}
             </div>
         </div>
     )
