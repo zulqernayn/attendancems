@@ -12,21 +12,21 @@ export default function AttendanceView({email}:{email:string}){
     async function fetchAttendance(){
         const res=await fetch(`http://localhost:5000/userAttendance`,{credentials:"include"})
         const data=await res.json()
-        // const {attendance}=data.userDto
-        const attendance=[
-            new Date(2022,11).toISOString(),
-            new Date(2022,10).toISOString(),
-            new Date(2022,9).toISOString(),
-            new Date(2022,8).toISOString(),
-            new Date(2022,7).toISOString(),
-            new Date(2022,6).toISOString(),
-            new Date(2022,5).toISOString(),
-            new Date(2022,4).toISOString(),
-            new Date(2022,3).toISOString(),
-            new Date(2022,2).toISOString(),
-            new Date(2022,1).toISOString(),
-            new Date(2022,0).toISOString(),
-        ]
+        const {attendance}=data.userDto
+        // const attendance=[
+        //     new Date(2022,11).toISOString(),
+        //     new Date(2022,10).toISOString(),
+        //     new Date(2022,9).toISOString(),
+        //     new Date(2022,8).toISOString(),
+        //     new Date(2022,7).toISOString(),
+        //     new Date(2022,6).toISOString(),
+        //     new Date(2022,5).toISOString(),
+        //     new Date(2022,4).toISOString(),
+        //     new Date(2022,3).toISOString(),
+        //     new Date(2022,2).toISOString(),
+        //     new Date(2022,1).toISOString(),
+        //     new Date(2022,0).toISOString(),
+        // ]
         setAttendanceRecord(returnAttendanceObjs(attendance))
     }
 
@@ -51,7 +51,8 @@ export default function AttendanceView({email}:{email:string}){
                 </button>
             </header>
             <div className="flex flex-wrap justify-center gap-3">
-                {attendanceRecord.map(attObj=><CalendarCard dates={attObj.dates} date={attObj.month}/>)}
+                {attendanceRecord.length>0?attendanceRecord.map(attObj=><CalendarCard dates={attObj.dates} date={attObj.month}/>)
+                :<div className="text-5xl text-zinc-600 ">No Data<i className="text-zinc-400 text-3xl ml-2 fas fa-faucet-drip"></i></div>}
             </div>
         </div>
     )

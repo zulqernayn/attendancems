@@ -5,8 +5,9 @@ function RegisterationView() {
   const [pending, setPending] = useState(false);
 
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="min-h-screen flex flex-col items-center justify-center">
       <form
+      //@ts-ignore
         onSubmit={registerUser}
         className={`rounded-2xl p-4 flex flex-col w-fit border-2 border-slate-200 bg-slate-100`}
       >
