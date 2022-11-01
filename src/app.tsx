@@ -10,7 +10,7 @@ import DashBoardView from "./pages/dashboardView";
 export function App() {
 
   return (
-    <div className="bg-zinc-800 w-screen h-screen">
+    <div className="bg-zinc-800">
     {/* @ts-ignore */}
       <Router>
         <LoginView

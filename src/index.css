@@ -19,6 +19,10 @@ body{
 }
 
 @layer components{
+    .grid-fit{
+        grid-template-columns: repeat(auto-fit,1fr);
+    }
+    
     .card-container{
         display: grid;
         gap: 1rem;

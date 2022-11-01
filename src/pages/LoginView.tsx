@@ -4,7 +4,7 @@ import {toast} from "react-hot-toast"
 function LoginView(){
 
   return(
-    <div className="w-full h-full flex flex-col items-center justify-center">
+    <div className="min-h-screen flex flex-col items-center justify-center">
         {/* @ts-ignore */}
       <form onSubmit={authenticateUser} className={`rounded-2xl p-4 flex flex-col w-fit border-2 border-slate-200 bg-slate-100`}>
           <h1 className="font-signika text-2xl text-slate-700">

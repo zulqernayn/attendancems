@@ -4,8 +4,6 @@ import MarkedDate from "./components/markedDate"
 
 export default function CalendarCard({dates=[],date=new Date()}:{dates:Array<number|null>,date:Date}){
 
-    const today=new Date()
-    
     function calendarDatesMapping(fillDate:number|null,i:number){
         if(dates.includes(fillDate))
             return <MarkedDate>{fillDate}</MarkedDate>
@@ -16,8 +14,8 @@ export default function CalendarCard({dates=[],date=new Date()}:{dates:Array<num
     }
     
     return(
-        <div className="flex flex-col gap-3 bg-zinc-900 h-fit p-4 rounded-xl">
-            <p className=" text-3xl text-violet-500">{date.toLocaleString('default', { month: 'long' })}</p>
+        <div className="flex text-xs flex-col gap-3 bg-zinc-900 h-fit p-4 rounded-xl">
+            <p className=" text-[2em] text-violet-500">{date.toLocaleString('default', { month: 'long' })}</p>
            <div>
                <div className="grid grid-cols-7 gap-2 justify-items-center">
                 {WEEK_DAYS.map(day=><p>{day}</p>)}
