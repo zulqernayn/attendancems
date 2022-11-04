@@ -3,39 +3,20 @@ import { route } from "preact-router";
 import "react-datepicker/dist/react-datepicker.css";
 import CalendarCard from "../components/calendarCard/calendarCard";
 import { returnUniqueMonthDates } from "../utils/utils";
+import { getUserAttendance } from "../services/apiServices";
 
 export default function AttendanceView({email}:{email:string}){
 
     const [attendanceRecord,setAttendanceRecord]:[attendanceRecord:Array<any>,setAttendanceRecord:Function]=useState([])
-    const [date,setDate]=useState(new Date())
+    // const [date,setDate]=useState(new Date())
     
     async function fetchAttendance(){
-        const res=await fetch(`http://localhost:5000/userAttendance`,{credentials:"include"})
-        const data=await res.json()
-        const {attendance}=data.userDto
-        // const attendance=[
-        //     new Date(2022,11).toISOString(),
-        //     new Date(2022,10).toISOString(),
-        //     new Date(2022,9).toISOString(),
-        //     new Date(2022,8).toISOString(),
-        //     new Date(2022,7).toISOString(),
-        //     new Date(2022,6).toISOString(),
-        //     new Date(2022,5).toISOString(),
-        //     new Date(2022,4).toISOString(),
-        //     new Date(2022,3).toISOString(),
-        //     new Date(2022,2).toISOString(),
-        //     new Date(2022,1).toISOString(),
-        //     new Date(2022,0).toISOString(),
-        // ]
-        setAttendanceRecord(returnAttendanceObjs(attendance))
-    }
-
-    function returnAttendanceObjs(attendance:Array<string>){
-        let uMonths=returnUniqueMonthDates(attendance).reverse()
+        const attendance = await getUserAttendance()
+        let uMonths=returnUniqueMonthDates(attendance)
         let attendanceObjs=uMonths.map(month=>{
             return {month:new Date(month),dates:attendance.map(date=>new Date(date).getMonth()===new Date(month).getMonth()&&new Date(date).getDate()).filter(i=>!!i)}
         })
-        return attendanceObjs
+        setAttendanceRecord(attendanceObjs)
     }
 
     useEffect(()=>{
