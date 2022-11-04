@@ -5,7 +5,8 @@ module.exports = {
   ],
   theme: {
     fontFamily:{
-      signika:"Signika Negative"
+      signika:"Signika Negative",
+      robotomono:"Roboto Mono"
     },
     extend: {
       gridTemplateColumns: {
