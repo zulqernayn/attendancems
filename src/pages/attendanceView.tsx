@@ -32,7 +32,12 @@ export default function AttendanceView({email}:{email:string}){
                 </button>
             </header>
             <div className="flex flex-wrap justify-center gap-3">
-                {attendanceRecord.length>0?attendanceRecord.map(attObj=><CalendarCard dates={attObj.dates} date={attObj.month}/>)
+                {attendanceRecord.length>0?
+                attendanceRecord.map(
+                    attObj=><CalendarCard 
+                                dates={attObj.dates} 
+                                date={attObj.month}/>
+                    )
                 :<div className="text-5xl text-zinc-600 ">No Data<i className="text-zinc-400 text-3xl ml-2 fas fa-faucet-drip"></i></div>}
             </div>
         </div>
