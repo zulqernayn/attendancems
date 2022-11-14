@@ -1,12 +1,10 @@
 const session = require("express-session");
 const MongoStore= require("connect-mongo");
-const { MONGO_URL } = require("../utils/config");
+const { MONGO_URL } = require("../config/config");
 
 const sessionStore=MongoStore.create({
-    mongoUrl:MONGO_URL,
+    mongoUrl: MONGO_URL ,
 })
-
-const MAX_AGE=1000*60*60;
 
 const expressSessionOptions = {
   secret: "qwerty",
