@@ -5,15 +5,15 @@ import CalendarCard from "../components/calendarCard/calendarCard";
 import { returnUniqueMonthDates } from "../utils/utils";
 import { getUserAttendance } from "../services/apiServices";
 
-export default function AttendanceView({email}:{email:string}){
+export default function AttendanceView(){
 
     const [attendanceRecord,setAttendanceRecord]:[attendanceRecord:Array<any>,setAttendanceRecord:Function]=useState([])
     // const [date,setDate]=useState(new Date())
     
     async function fetchAttendance(){
         const attendance = await getUserAttendance()
-        let uMonths=returnUniqueMonthDates(attendance)
-        let attendanceObjs=uMonths.map(month=>{
+        let uniqueMonths=returnUniqueMonthDates(attendance)
+        let attendanceObjs=uniqueMonths.map(month=>{
             return {month:new Date(month),dates:attendance.map(date=>new Date(date).getMonth()===new Date(month).getMonth()&&new Date(date).getDate()).filter(i=>!!i)}
         })
         setAttendanceRecord(attendanceObjs)

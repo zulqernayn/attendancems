@@ -11,7 +11,9 @@ function RegisterationView() {
         onSubmit={registerUser}
         className={`rounded-2xl p-4 flex flex-col w-fit border-2 border-slate-200 bg-slate-100`}
       >
-        <h1 className="font-signika text-2xl text-slate-700">
+        <h1 
+          className="font-signika text-2xl text-slate-700"
+        >
           Registration Form
         </h1>
         <label>Email</label>
