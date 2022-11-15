@@ -1,6 +1,6 @@
-const { getUserAttendance } = require("../controllers/attendanceController")
-const { getDashboardData, markTodaysAttendance } = require("../controllers/dashboardController")
-const { authenticateUser } = require("../controllers/authController")
+const { getUserAttendance, markTodaysAttendance } = require("../controllers/attendanceController")
+const { getDashboardData } = require("../controllers/dashboardController")
+const { authenticateUser, logoutUser } = require("../controllers/authController")
 const { createUser } = require("../controllers/registrationController")
 
 module.exports=function(app) {
@@ -13,7 +13,7 @@ module.exports=function(app) {
     
 	// GET routes -----------------------*-|
     
-	app.get("/logout",) // logout user
+	app.get("/logout",logoutUser) // logout user
 	
 	app.get("/getdashboarddata", getDashboardData) // get dashboard data for user
 	

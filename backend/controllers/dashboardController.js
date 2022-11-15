@@ -1,3 +1,5 @@
+const User = require("../models/User")
+
 const getDashboardData = async (req,res)=>{
     const user=await User.findOne({email:req.session.userEmail})
     if(user){

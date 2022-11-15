@@ -1,6 +1,6 @@
 const session = require("express-session");
 const MongoStore= require("connect-mongo");
-const { MONGO_URL } = require("../config/config");
+const { MONGO_URL,MAX_AGE } = require("./config");
 
 const sessionStore=MongoStore.create({
     mongoUrl: MONGO_URL ,

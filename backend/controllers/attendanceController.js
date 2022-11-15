@@ -1,4 +1,4 @@
-// GET requests
+const User = require("../models/User")
 
 const getUserAttendance = async (req,res)=>{
     console.log(req.path)

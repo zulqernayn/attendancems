@@ -1,3 +1,5 @@
+const User = require("../models/User")
+
 const authenticateUser = async (req,res)=>{
     const responseObj={
         error:false,
@@ -26,4 +28,15 @@ const authenticateUser = async (req,res)=>{
 
 }
 
-module.exports={authenticateUser}
+
+const logoutUser = async (req,res)=>{
+    req.session.userEmail&&req.session.destroy()
+    res
+    .status(200)
+    .json({
+        error:false,
+        message:"User Logged Out"
+    })
+}
+
+module.exports={authenticateUser,logoutUser}
