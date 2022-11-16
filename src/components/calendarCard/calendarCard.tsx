@@ -14,7 +14,7 @@ export default function CalendarCard({dates=[],date=new Date()}:{dates:Array<num
     }
     
     return(
-        <div className="flex flex-col gap-3 bg-zinc-900 p-4 rounded-2xl">
+        <div className="flex flex-col gap-3 bg-zinc-900 p-4 rounded-2xl border-2 border-[slateblue]">
             <p className=" text-[2em] text-violet-500">{date.toLocaleString('default', { month: 'long' })}</p>
             <div>
                 <div className="grid grid-cols-7 gap-2 justify-items-center">
