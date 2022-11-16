@@ -12,7 +12,7 @@ export default function AttendanceView(){
     async function fetchAttendance(){
         const attendance = await getUserAttendance()
         let uniqueMonths=returnUniqueMonthDates(attendance)
-        const dates=new Array(12).fill(null).map((_,i)=>new Date(2024,i,1).toISOString())
+        // const dates=new Array(12).fill(null).map((_,i)=>new Date(2024,i,1).toISOString())
         let attendanceObjs=uniqueMonths.map(month=>{
             return {month:new Date(month),dates:attendance.map(date=>new Date(date).getMonth()===new Date(month).getMonth()&&new Date(date).getDate()).filter(i=>!!i)}
         })
@@ -31,7 +31,7 @@ export default function AttendanceView(){
                     Back
                 </button>
             </header>
-            <div className="flex flex-wrap justify-center items-stretch gap-3 drop-shadow-[-10px_-10px_60px_black]">
+            <div className="flex flex-wrap justify-center items-stretch gap-3 drop-shadow-[0px_0px_40px_#0004]">
                 {
                     attendanceRecord.length>0
                     ?
