@@ -2,7 +2,7 @@ export const WEEK_DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
 export function returnMonthFillDates(date: Date):Array<null|number> {
   const BLANKS = new Array(new Date(date.getFullYear(), date.getMonth(), 1).getDay()).fill(null);
-  const MONTH_DATES = new Array(new Date(0,date.getMonth(),0).getDate()).fill(null).map((_, i) => i + 1);
+  const MONTH_DATES = new Array(new Date(0,date.getMonth()+1,0).getDate()).fill(null).map((_, i) => i + 1);
   return [...BLANKS,...MONTH_DATES]
 }
 
