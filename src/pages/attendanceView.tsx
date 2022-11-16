@@ -8,15 +8,17 @@ import { getUserAttendance } from "../services/apiServices";
 export default function AttendanceView(){
 
     const [attendanceRecord,setAttendanceRecord]:[attendanceRecord:Array<any>,setAttendanceRecord:Function]=useState([])
-    // const [date,setDate]=useState(new Date())
     
     async function fetchAttendance(){
         const attendance = await getUserAttendance()
         let uniqueMonths=returnUniqueMonthDates(attendance)
+        const dates=new Array(12).fill(null).map((_,i)=>new Date(2022,i,1).toISOString())
         let attendanceObjs=uniqueMonths.map(month=>{
             return {month:new Date(month),dates:attendance.map(date=>new Date(date).getMonth()===new Date(month).getMonth()&&new Date(date).getDate()).filter(i=>!!i)}
         })
         setAttendanceRecord(attendanceObjs)
+        console.log("attendanceObjs",attendanceObjs)
+        console.log("unique months",uniqueMonths)
     }
 
     useEffect(()=>{
@@ -31,14 +33,17 @@ export default function AttendanceView(){
                     Back
                 </button>
             </header>
-            <div className="flex flex-wrap justify-center gap-3">
-                {attendanceRecord.length>0?
-                attendanceRecord.map(
-                    attObj=><CalendarCard 
-                                dates={attObj.dates} 
-                                date={attObj.month}/>
-                    )
-                :<div className="text-5xl text-zinc-600 ">No Data<i className="text-zinc-400 text-3xl ml-2 fas fa-faucet-drip"></i></div>}
+            <div className="flex flex-wrap justify-center items-stretch gap-3">
+                {
+                    attendanceRecord.length>0
+                    ?
+                    attendanceRecord.map(attObj=><CalendarCard dates={attObj.dates} date={attObj.month}/>)
+                    :
+                    <div className="text-5xl text-zinc-600 ">
+                        No Data
+                        <i className="text-zinc-400 text-3xl ml-2 fas fa-faucet-drip"></i>
+                    </div>
+                }
             </div>
         </div>
     )
