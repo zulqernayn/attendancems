@@ -8,9 +8,11 @@ import { getUserAttendance } from "../services/apiServices";
 export default function AttendanceView(){
 
     const [attendanceRecord,setAttendanceRecord]:[attendanceRecord:Array<any>,setAttendanceRecord:Function]=useState([])
+    const [isDataLoaded,setIsDataLoaded]=useState(false)
     
     async function fetchAttendance(){
         const attendance = await getUserAttendance()
+        setIsDataLoaded(true)
         let uniqueMonths=returnUniqueMonthDates(attendance)
         // const dates=new Array(12).fill(null).map((_,i)=>new Date(2024,i,1).toISOString())
         let attendanceObjs=uniqueMonths.map(month=>{
@@ -37,9 +39,15 @@ export default function AttendanceView(){
                     ?
                     attendanceRecord.map(attObj=><CalendarCard dates={attObj.dates} date={attObj.month}/>)
                     :
+                    isDataLoaded?
                     <div className="text-5xl text-zinc-600 ">
                         No Data
                         <i className="text-zinc-400 text-3xl ml-2 fas fa-faucet-drip"></i>
+                    </div>
+                    :
+                    <div className="text-5xl text-zinc-600 ">
+                        Loading...
+                        <i className="text-indigo-400 text-3xl ml-2 fas fa-hurricane fa-spin"></i>
                     </div>
                 }
             </div>
