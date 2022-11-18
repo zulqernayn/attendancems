@@ -9,6 +9,7 @@ function LoginView(){
       <form onSubmit={authenticateUser} className={`rounded-2xl p-4 flex flex-col w-fit border-2 border-slate-200 bg-slate-100`}>
           <h1 className="font-signika text-2xl text-slate-700">
             Login Form
+            {/* sdfg */}
           </h1>
           <label>Email</label>
           <input placeholder="your email.." className="px-3 shadow-xl py-1 bg-white border-2 border-black rounded-xl" name="email" type="email" required />
