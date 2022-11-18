@@ -1,4 +1,4 @@
-import { route } from "preact-router"
+import { Link, route } from "preact-router"
 import {toast} from "react-hot-toast"
 
 function LoginView(){
@@ -17,7 +17,7 @@ function LoginView(){
           <button type="submit" className={`rounded-xl hover:bg-green-300 hover:shadow-green-200 bg-green-200 hover:shadow-xl border-green-300 border-2 py-1 mt-4`}>Login</button>
           <div className="flex flex-col items-center">
             <p>Or</p>
-            <a className="w-full text-center p-1 px-3 rounded-xl hover:bg-blue-300 hover:shadow-blue-200 bg-blue-200 hover:shadow-xl border-blue-300 border-2" href="http://localhost:3000/">Register</a>
+            <Link className="w-full text-center p-1 px-3 rounded-xl hover:bg-blue-300 hover:shadow-blue-200 bg-blue-200 hover:shadow-xl border-blue-300 border-2" href="/">Register</Link>
           </div>
       </form>
   </div>

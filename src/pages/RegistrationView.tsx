@@ -1,3 +1,4 @@
+import { Link } from "preact-router";
 import { useState } from "preact/hooks";
 import { toast } from "react-hot-toast";
 
@@ -49,7 +50,7 @@ function RegisterationView() {
         </button>
         <div className="flex flex-col items-center">
             <p>Or</p>
-            <a className="w-full text-center p-1 px-3 rounded-xl hover:bg-blue-300 hover:shadow-blue-200 bg-blue-200 hover:shadow-xl border-blue-300 border-2" href="http://localhost:3000/login">Login</a>
+            <Link className="w-full text-center p-1 px-3 rounded-xl hover:bg-blue-300 hover:shadow-blue-200 bg-blue-200 hover:shadow-xl border-blue-300 border-2" href="/login">Login</Link>
         </div>
       </form>
     </div>
