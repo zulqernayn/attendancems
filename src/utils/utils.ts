@@ -1,3 +1,8 @@
+
+
+
+// calendar functions  todo :  put them in the respective component as they dont belong in utils because they are not being used repeatedly
+
 export const WEEK_DAYS = ["Su", "Mo", "Tu", "We", "Th", "Fr", "Sa"];
 
 export function returnMonthFillDates(date: Date):Array<null|number> {
